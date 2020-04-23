@@ -13,20 +13,20 @@ public class Servidor {
 
 	private static ServerSocket sockServer;
 	
-	// Inicia el servidor, el cual es capaz de escuchar mensajes
+	// Starts the server, which is capable of listening to messages
 	public Servidor(int puerto) {
 		try {
 			sockServer = new ServerSocket(puerto);
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error en la creaci�n del servidor para que el otro usuario se conecte", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error in creating the server for the other user to connect", "ERROR", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
 	
-	//  Pone el listener del servidor con un Callback
+	//  Set the server listener with a Callback
 	public static void aceptarMensajes(GetCallback call) {
 		
-		// Este proceso se lleva en un hilo aparte para evitar parar el programa
+		// This process is carried in a separate thread to avoid stopping the program
 		Thread escucha = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -44,13 +44,13 @@ public class Servidor {
 					
 					
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, "El usuario ha salido del chat", "ERROR", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "The user has left the chat", "ERROR", JOptionPane.INFORMATION_MESSAGE);
 					e.printStackTrace();
 				}
 			}
 		});
 		
-		// El programa inicia el hilo
+		// The program starts the thread
 		escucha.start();
 	}
 	

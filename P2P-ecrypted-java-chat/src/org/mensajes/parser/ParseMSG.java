@@ -2,7 +2,7 @@ package org.mensajes.parser;
 
 public class ParseMSG {
 
-	// Da el estilo a los mensajes recividos
+	// Style your received messages
 	public static String parseMensajeRecv(String msg) {
 		
 		String ret;
@@ -12,7 +12,7 @@ public class ParseMSG {
 		return ret;
 	}
 	
-	// Da el estilo a los mensajes enviads
+	// Style your sent messages
 	public static String parseMensajeEnv(String msg) {
 		String ret;
 		

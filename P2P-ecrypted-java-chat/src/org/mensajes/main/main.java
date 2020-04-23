@@ -5,7 +5,7 @@ import org.mensajes.ventanas.VentanaConectar;
 public class main {
 	
 	public static void main(String[] args) {
-		// Inicia la ventana para conectarse
+		// Start the window to connect
 		VentanaConectar venCon = new VentanaConectar();
 		venCon.mostrarVentana();
 	}

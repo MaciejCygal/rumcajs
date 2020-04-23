@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 
 public class Decoracion {
 	
-	// Decoración por defecto para el JTextField
+	// Default decoration for the JTextField
 	public static JTextField setBasicEstiloTXT(JTextField campo) {
 		
 		campo.setBackground(Paleta.COLOR_SECUNDARIO);
@@ -21,7 +21,7 @@ public class Decoracion {
 		return campo;
 	}
 	
-	// Decoración por defecto para el JButton
+	// Default decoration for the JButton
 	public static JButton setAceptBTN(JButton btn) {
 		
 		btn.setBackground(Paleta.ACEPTAR);

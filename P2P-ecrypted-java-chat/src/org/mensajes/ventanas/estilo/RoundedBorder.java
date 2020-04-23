@@ -7,7 +7,7 @@ import java.awt.Insets;
 
 import javax.swing.border.Border;
 
-// Crea el borde redondo
+// Create the round border
 public class RoundedBorder implements Border {
 
 	private int radio;

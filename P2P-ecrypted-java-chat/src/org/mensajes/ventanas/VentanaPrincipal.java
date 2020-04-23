@@ -24,42 +24,42 @@ import org.mensajes.network.Servidor;
 import org.mensajes.parser.ParseMSG;
 import org.mensajes.ventanas.estilo.Paleta;
 //----------------FE------------------------------------------------------------------
-// Clase donde va la ventana
+// Class where the window goes
 public class VentanaPrincipal extends JFrame {
 	
-	// Constantes de la clase
+	// Class constants
 	private final int ANCHO = 500;
 	private final int ALTO = 600;
 	
-	private final String TITULO = "Mensajes";
+	private final String TITULO = "Messages";
 	
 	private final int DEAULT_CLOP = JFrame.EXIT_ON_CLOSE;
 	
 	private final boolean REDIMENSIONABLE = true;
 	
-	// Componentes del JFrame
+	// JFrame components
 	private JPanel panel;
 	
-	// Constructor de la ventana PARAMETROS DE LA CLASE
+	// CLASS PARAMETERS window constructor
 	public VentanaPrincipal() {
-		// Configuramos el JFrame
+		// We configure the JFrame
 		setSize(ANCHO, ALTO);
 		setTitle(TITULO);
 		setDefaultCloseOperation(DEAULT_CLOP);
 		setResizable(REDIMENSIONABLE);
 		
-		// Iniciamos los componentes
+		// We start the components
 		panel = new marcoVentanaPrincipal();
-		//A�adimos los componentes
+		// We added the components
 		add(panel);
 	}
 	
-	// Muestra la ventana
+	// Show window
 	public void mostrarVentana() {
 		setVisible(true);
 	}
 	
-	// Muestra la ventana si mostrar es igual a true, si no, la oculta
+	// Show the window if show equals true, if not, hide it
 	public void mostrarVentana(boolean mostrar) {
 		setVisible(mostrar);
 	}
@@ -68,14 +68,14 @@ public class VentanaPrincipal extends JFrame {
 
 class marcoVentanaPrincipal extends JPanel {
 
-	// Variables de la clase
+	// Class variables
 	private JEditorPane conversacion;
 	private JTextField entrada;
 	
-	//Stack de mensakes
+	// Message stack
 	private String mensajes;
 	
-	// Constructor de la clase iniciamos, configuramos y mostramos
+	// Constructor of the class we initiate, configure and show
 	public marcoVentanaPrincipal() {
 		super(new BorderLayout());
 		
@@ -84,7 +84,7 @@ class marcoVentanaPrincipal extends JPanel {
 		
 		mensajes = "";
 		
-		// Configuramos el panel donde se va a llevar a cabo la conversaci�n
+		// We configure the panel where the conversation will take place
 		conversacion.setContentType("text/html");
 		conversacion.setEditable(false);
 		conversacion.setBackground(Paleta.COLOR_PRIMARIO);
@@ -94,7 +94,7 @@ class marcoVentanaPrincipal extends JPanel {
 		conversacion.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
 		conversacion.setText("");
 		
-		// Configuramos la entrada de texto
+		// We configure the text input
 		entrada.setBackground(Paleta.COLOR_SECUNDARIO);
 		entrada.setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Paleta.COLOR_CLARO));
 		entrada.setForeground(Color.white);
@@ -107,11 +107,11 @@ class marcoVentanaPrincipal extends JPanel {
 			}
 		});
 		
-		// A�adimos los elementos al panel
+		// We added the elements to the panel
 		add(conversacion, BorderLayout.CENTER);
 		add(entrada, BorderLayout.SOUTH);
 		
-		// Aceptamos mensajes en el servidor
+		// We accept messages on the server
 		Servidor.aceptarMensajes(new GetCallback() {
 			
 			@Override
@@ -130,22 +130,22 @@ class marcoVentanaPrincipal extends JPanel {
 	//--------------------FE-------------------------------------------------------------------------
 
 	//BE------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-	// M�todo para enviar mensaje al otro usuario
+	// Method to send message to the other user
 	private void enviarMensaje(String msg) {
 		
-		// Si hay un espacio al inicio lo elimina
+		// If there is a space at the beginning, delete it
 		if (msg.charAt(0) == ' ') {
 			msg = msg.substring(1, msg.length());
 		}
 		
-		// Borra el texto del input
+		// Delete the text from the input
 		entrada.setText("");
 		
 		System.out.println(msg);
 		mensajes += ParseMSG.parseMensajeEnv(msg);
 		conversacion.setText(mensajes);
 		
-		// Envia el mensaje y establece un callback para cuando el otro usuario haya recibido el mensaje con exito
+		// Send the message and set a callback for when the other user has successfully received the message
 		Cliente.enviarMensaje(Cifrado.cifrarMSG(msg), null);
 	}
 

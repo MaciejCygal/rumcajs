@@ -10,25 +10,25 @@ import javax.swing.JOptionPane;
 //BE------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public class Cliente {
 	
-	// Variables de la clase
+	// Class variables
 	private static Socket sockCliente;
 	
 	private static PrintWriter out;
 	private static BufferedReader in;
 	
-	// Inicia el cliente, el cual tiene la capacidad de enviar mensajes
+	// Starts the client, which has the ability to send messages
 	public Cliente(String IP, int puerto) {
 		try {
 			sockCliente = new Socket(IP, puerto);
 			out = new PrintWriter(sockCliente.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(sockCliente.getInputStream()));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Error al conectaese al otro usuario\n�Seguro que esta conectado?", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Failed to connect to the other user \ n Are you sure you are connected?", "ERROR", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
 	
-	// M�todo para enviar los mensajes
+	// Method to send messages
 	public static void enviarMensaje(String msg, SentCallback call) {
 		System.out.println("enviado a "+sockCliente.getLocalAddress()+"\nmsg: "+msg);
 		out.println(msg);
@@ -41,7 +41,7 @@ public class Cliente {
 					ret = in.readLine();
 					System.out.println(ret);
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, "Error en la verificacion de la recepci�n del mensaje por parte del otro usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error in verifying the reception of the message by the other user", "ERROR", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 			}

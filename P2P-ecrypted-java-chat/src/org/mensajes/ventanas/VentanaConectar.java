@@ -26,11 +26,11 @@ import org.mensajes.ventanas.estilo.Paleta;
 
 public class VentanaConectar extends JFrame {
 	
-	// Constantes de la clase
+	// Class constants
 	private final int ANCHO = 470;
 	private final int ALTO = 500;
 	
-	private final String TITULO = "Configuracion del chat";
+	private final String TITULO = "Chat settings";
 	
 	private final int DEAULT_CLOP = JFrame.EXIT_ON_CLOSE;
 		
@@ -38,32 +38,32 @@ public class VentanaConectar extends JFrame {
 
 	//FE
 	public VentanaConectar () {
-		// Configuramos el JFrame
+		// We configure the JFrame
 		setSize(ANCHO, ALTO);
 		setTitle(TITULO);
 		setDefaultCloseOperation(DEAULT_CLOP);
 		setResizable(REDIMENSIONABLE);
 		
-		// A�adimos el marco
+		// We added the frame
 		MarcoConectar marco = new MarcoConectar();
 		
 		add(marco);
 	}
 
 	//FE
-	// Muestra la ventana
+	// Show window
 	public void mostrarVentana() {
 		setVisible(true);
 	}
 
 	//FE
-	// Muestra la ventana si mostrar es igual a true, si no, la oculta
+	// Show the window if show equals true, if not, hide it
 	public void mostrarVentana(boolean mostrar) {
 		setVisible(mostrar);
 	}
 
 	//FE
-	// Cierrra la ventana
+	// Close the window
 	public void cerrarVentana() {
 		dispose();
 	}
@@ -72,41 +72,41 @@ public class VentanaConectar extends JFrame {
 
 class MarcoConectar extends JPanel {
 
-	// Variables necesarias para comprobar que est�n las dos cosas iniciadas y pasar al chat
+	// Variables necessary to check that both things are started and go to chat
 	private boolean clientActivated, serverActivated;
 
-	// Objetos del marco que obligatoriamente tienen que ser p�blicos para acceder a sus propiedades y controlarlos
+	// Framework objects that must be public to access and control their properties
 	private JPanel pPrincipal, pInitserver, pInitClient, pCrypto;
 	private JButton btn_crypto, btn_InitServer, btn_InitClient;
 	private JTextField Key_txt, SPort_txt, CPort_txt, CIP_txt;
 
 	//FE
-	// Constructor de la clase
+	// Class constructor
 	public MarcoConectar() {
 		
-		// Se crean los paneles
+		// Panels are created
 		pPrincipal = new JPanel();
 		pCrypto = new JPanel();
 		pInitserver = new JPanel();
 		pInitClient = new JPanel();
 		
-		// Se a�aden margenes con un CardLayout
+		// Margins are added with a CardLayout
 		setLayout(new CardLayout(10,10));
 		setBackground(Paleta.COLOR_PRIMARIO);
 		
-		// Panel principal, donde iran los otros dos paneles, uno con el servidor y otro con el cliente
+		// Main panel, where the other two panels will go, one with the server and one with the client
 		pPrincipal = new JPanel();
 		pPrincipal.setLayout(new BoxLayout(pPrincipal, BoxLayout.PAGE_AXIS));
 		pPrincipal.setBackground(Paleta.COLOR_PRIMARIO);
 		
-		// Establece las propiedades visuales, tanto del panel del cliente como el del servidor
+		// Set the visual properties for both the client and server panels
 		setCryptoPropierties();
 		setInitserverVPropierties();
 		setInitClientVPropierties();
 		
 		/* 
-		*	Listener de los botones (Para establecer la clave criptogr�fica, iniciar el servidor y el cliente),
-		*	simplemente llama a otros m�todos que realizan la acci�n (Para mayor comprensi�n del c�digo)
+		*	Button list (To set the cryptographic key, start the server and the client),
+        *   simply call other methods that perform the action (For a better understanding of the code)
 		*/
 		btn_crypto.addActionListener(new ActionListener() {
 			@Override
@@ -129,46 +129,46 @@ class MarcoConectar extends JPanel {
 			}
 		});
 		
-		// Se a�aden los paneles secundarios al principal
+		// Secondary panels are added to the main one
 		pPrincipal.add(pCrypto);
 		pPrincipal.add(pInitserver);
 		pPrincipal.add(pInitClient);
 		
-		// El principal se a�ade al superior con los bordes a�adidos
+		// The main is added to the top with the edges added
 		add(pPrincipal);
 	}
 
 	//FE
-	// Establece la clave cryptografica en caso de que no se haya cambiado
+	// Set the cryptographic key in case it hasn't been changed
 	private void setCryptoKey() {
 		new Cifrado(Key_txt.getText());
 	}
 
 	//BE
-	// Inicia el servidor, y si el cliente ya se ha iniciado, se abre la pantalla de di�logo
+	// Start the server, and if the client has already started, the dialog screen opens
 	private void initServer() {
 		String spuerto = SPort_txt.getText();
 		int puerto;
 		try {
 			puerto = Integer.parseInt(spuerto);
 			new Servidor(puerto);
-			JOptionPane.showMessageDialog(null, "Servidor iniciado con �xito, el otro usuario ya se puede conectar", "Servidor iniciado", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Server started successfully, the other user can now connect", "Server started", JOptionPane.INFORMATION_MESSAGE);
 			SPort_txt.setEditable(false);
 			btn_InitServer.setEnabled(false);
 			serverActivated = true;
 			if (clientActivated) {
 				VentanaPrincipal ventana = new VentanaPrincipal();
 				ventana.mostrarVentana();
-				// CERRAR ESTA VENTANA FALTA
+				// CLOSE THIS WINDOW MISSING
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Tan solo se pueden introducir numeros en el puerto", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Only numbers can be entered in the port", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
 
 	//BE
-	// Inicia el cliente, y si el servidor ya se ha iniciado, se abre la pantalla de di�logo
+	// Start the client, and if the server has already started, the dialog screen opens
 	private void initClient() {
 		String IP = CIP_txt.getText();
 		String spuerto = CPort_txt.getText();
@@ -178,23 +178,23 @@ class MarcoConectar extends JPanel {
 		try {
 			puerto = Integer.parseInt(spuerto);
 			new Cliente(IP, puerto);
-			JOptionPane.showMessageDialog(null, "Cliente conectado con �xito", "Cliente iniciado", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Client connected successfully", "Client started", JOptionPane.INFORMATION_MESSAGE);
 			CIP_txt.setEditable(false);
 			CPort_txt.setEditable(false);
 			btn_InitClient.setEnabled(false);
 			if (serverActivated) {
 				VentanaPrincipal ventana = new VentanaPrincipal();
 				ventana.mostrarVentana();
-				// CERRAR ESTA VENTANA FALTA
+				// CLOSE THIS WINDOW MISSING
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Tan solo se pueden introducir numeros en el puerto", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "You can only enter numbers in the port", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
 
 	//FE
-	// Establece las propiedades visuales del panel
+	// Sets the visual properties of the panel
 	private void setCryptoPropierties() {
 		pCrypto.setForeground(Color.WHITE);
 		pCrypto.setBackground(Paleta.COLOR_PRIMARIO);
@@ -216,8 +216,8 @@ class MarcoConectar extends JPanel {
 		c.insets = new Insets(3, 3, 3, 3);
 		c.gridwidth = 1;
 		
-		// FILA 1
-		JLabel lab_key = new JLabel("Clave de encriptado");
+		// ROW 1
+		JLabel lab_key = new JLabel("Encryption key");
 		lab_key.setForeground(Color.WHITE);
 		c.weightx = 1;
 		c.weighty = 1;
@@ -225,22 +225,22 @@ class MarcoConectar extends JPanel {
 		c.gridy = 0;
 		pCrypto.add(lab_key,c);
 		
-		// FILA 2
+		// ROW 2
 		Key_txt = new JTextField();
 		Decoracion.setBasicEstiloTXT(Key_txt);
 		c.gridy = 1;
 		c.insets = new Insets(0,6,0,6);
 		pCrypto.add(Key_txt, c);
 		
-		// FILA 3
-		btn_crypto = new JButton("Establecer clave");
+		// ROW 3
+		btn_crypto = new JButton("Set password");
 		Decoracion.setAceptBTN(btn_crypto);
 		c.gridy = 2;
 		pCrypto.add(btn_crypto, c);
 	}
 
 	//FE
-	// Establece las propiedades visuales del panel
+	// Sets the visual properties of the panel
 	private void setInitserverVPropierties() {
 		pInitserver.setForeground(Color.WHITE);
 		pInitserver.setBackground(Paleta.COLOR_PRIMARIO);
@@ -248,7 +248,7 @@ class MarcoConectar extends JPanel {
 		pInitserver.setBorder(
 			BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Paleta.COLOR_SECUNDARIO), 
-				"Configurar servidor",
+				"Configure server",
 				TitledBorder.DEFAULT_JUSTIFICATION,
 				TitledBorder.DEFAULT_POSITION,
 				null,
@@ -261,8 +261,8 @@ class MarcoConectar extends JPanel {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(3, 3, 3, 3);
 		
-		// FILA 1
-		JLabel lab_Port = new JLabel("puerto");
+		// ROW 1
+		JLabel lab_Port = new JLabel("port");
 		lab_Port.setForeground(Color.WHITE);
 		c.weightx = 1;
 		c.weighty = 1;
@@ -270,7 +270,7 @@ class MarcoConectar extends JPanel {
 		c.gridy = 0;
 		pInitserver.add(lab_Port, c);
 		
-		// FILA 2
+		// ROW 2
 		SPort_txt = new JTextField();
 		Decoracion.setBasicEstiloTXT(SPort_txt);
 		c.weightx = 1;
@@ -281,8 +281,8 @@ class MarcoConectar extends JPanel {
 		c.insets = new Insets(0,6,0,6);
 		pInitserver.add(SPort_txt, c);
 		
-		// FILA 3
-		btn_InitServer = new JButton("Iniciar servidor");
+		// ROW 3
+		btn_InitServer = new JButton("Start server");
 		Decoracion.setAceptBTN(btn_InitServer);
 		c.weightx = 1;
 		c.weighty = 1;
@@ -294,7 +294,7 @@ class MarcoConectar extends JPanel {
 	}
 
 	//FE
-	// Establece las propiedades visuales del panel
+	// Sets the visual properties of the panel
 	private void setInitClientVPropierties() {
 		pInitClient.setForeground(Color.WHITE);
 		pInitClient.setBackground(Paleta.COLOR_PRIMARIO);
@@ -315,7 +315,7 @@ class MarcoConectar extends JPanel {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(3, 3, 3, 3);
 		
-		// FILA 1
+		// ROW 1
 		JLabel lab_IP = new JLabel("IP");
 		lab_IP.setForeground(Color.WHITE);
 		c.weightx = 2;
@@ -324,7 +324,7 @@ class MarcoConectar extends JPanel {
 		c.gridy = 0;
 		pInitClient.add(lab_IP, c);
 		
-		JLabel lab_Port = new JLabel("puerto");
+		JLabel lab_Port = new JLabel("port");
 		lab_Port.setForeground(Color.WHITE);
 		c.weightx = 1;
 		c.weighty = 1;
@@ -332,7 +332,7 @@ class MarcoConectar extends JPanel {
 		c.gridy = 0;
 		pInitClient.add(lab_Port, c);
 		
-		// FILA 2
+		// ROW 2
 		CIP_txt = new JTextField();
 		Decoracion.setBasicEstiloTXT(CIP_txt);
 		c.weightx = 2;
@@ -351,8 +351,8 @@ class MarcoConectar extends JPanel {
 		c.insets = new Insets(0,0,0,6);
 		pInitClient.add(CPort_txt, c);
 		
-		// FILA 3
-		btn_InitClient = new JButton("Iniciar Cliente");
+		// ROW 3
+		btn_InitClient = new JButton("Start Client");
 		Decoracion.setAceptBTN(btn_InitClient);
 		c.weightx = 1;
 		c.weighty = 1;

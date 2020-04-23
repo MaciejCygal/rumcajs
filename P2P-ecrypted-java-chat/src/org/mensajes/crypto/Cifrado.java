@@ -10,18 +10,18 @@ import javax.swing.JOptionPane;
 //BE------------------------------------------
 public class Cifrado {
 
-	// Establece una clave por defecto
+	// Set a default password
 	private static String KEY = "g�'90��p�p�8486-,-.,<2";
 	
 	private static SecretKeySpec secretKey;
 	private static byte[] key;
 	
-	// Si el usuario quiere poner otra clave, se cambia
+	// If the user wants to put another password, it is changed
 	public Cifrado(String key) {
 		KEY = key;
 	}
 	
-	// Convierte la clave tipo String al tipo SecretKeySpec
+	// Converts the key type String to the type SecretKeySpec
 	private static void setKey() {
 		
 		MessageDigest sha = null;
@@ -37,7 +37,7 @@ public class Cifrado {
 		}
 	}
 	
-	// Cifra el mensaje con la clave.
+	// Encrypts the message with the key.
 	public static String cifrarMSG(String msg) {
 		String ret;
 		
@@ -53,7 +53,7 @@ public class Cifrado {
 		return null;
 	}
 	
-	// Descifra el mensaje con la clave
+	// Decrypt the message with the password
 	public static String descifrarMSG(String msg) {
 		
 		try {
@@ -63,7 +63,7 @@ public class Cifrado {
 			return new String(cifrado.doFinal(Base64.getDecoder().decode(msg)));
 		} catch (Exception e) {
 			System.err.println("Error al descifrar");
-			JOptionPane.showMessageDialog(null, "La clave de descifrado no es correcta", "Error al descifrar", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Decryption key is not correct "," Error decrypting", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		return null;
