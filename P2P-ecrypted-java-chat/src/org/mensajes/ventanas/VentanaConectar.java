@@ -202,7 +202,7 @@ class MarcoConectar extends JPanel {
 		pCrypto.setBorder(
 			BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Paleta.COLOR_SECUNDARIO), 
-				"Encriptado",
+				"Encryption",
 				TitledBorder.DEFAULT_JUSTIFICATION,
 				TitledBorder.DEFAULT_POSITION,
 				null,
@@ -302,7 +302,7 @@ class MarcoConectar extends JPanel {
 		pInitClient.setBorder(
 			BorderFactory.createTitledBorder(
 				BorderFactory.createLineBorder(Paleta.COLOR_SECUNDARIO), 
-				"Configurar cliente",
+				"Configure client",
 				TitledBorder.DEFAULT_JUSTIFICATION,
 				TitledBorder.DEFAULT_POSITION,
 				null,

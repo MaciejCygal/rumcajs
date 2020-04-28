@@ -23,7 +23,7 @@ public class Cliente {
 			out = new PrintWriter(sockCliente.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(sockCliente.getInputStream()));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Failed to connect to the other user \ n Are you sure you are connected?", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Failed to connect to the other user \n Are you sure you are connected?", "ERROR", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}

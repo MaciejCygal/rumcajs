@@ -47,7 +47,7 @@ public class Cifrado {
 			cifrado.init(Cipher.ENCRYPT_MODE, secretKey);
 			return Base64.getEncoder().encodeToString(cifrado.doFinal(msg.getBytes()));
 		} catch (Exception e) {
-			System.err.println("Error al cifrar");
+			System.err.println("Encryption failed");
 		}
 		
 		return null;
@@ -62,7 +62,7 @@ public class Cifrado {
 			cifrado.init(Cipher.DECRYPT_MODE, secretKey);
 			return new String(cifrado.doFinal(Base64.getDecoder().decode(msg)));
 		} catch (Exception e) {
-			System.err.println("Error al descifrar");
+			System.err.println("Decryption failed");
 			JOptionPane.showMessageDialog(null, "Decryption key is not correct "," Error decrypting", JOptionPane.ERROR_MESSAGE);
 		}
 		
