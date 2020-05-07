@@ -1,9 +1,9 @@
-package org.mensajes.parser;
+package org.messages.parser;
 
 public class ParseMSG {
 
 	// Style your received messages
-	public static String parseMensajeRecv(String msg) {
+	public static String parseMessageRecv(String msg) {
 		
 		String ret;
 		
@@ -13,7 +13,7 @@ public class ParseMSG {
 	}
 	
 	// Style your sent messages
-	public static String parseMensajeEnv(String msg) {
+	public static String parseMessageEnv(String msg) {
 		String ret;
 		
 		ret = "<p text-align:right;color:red;>"+msg+"</p>";

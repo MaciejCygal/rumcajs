@@ -1,4 +1,4 @@
-package org.mensajes.network;
+package org.messenges.network;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,20 +8,20 @@ import java.net.Socket;
 
 import javax.swing.JOptionPane;
 //BE------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-public class Cliente {
+public class Client {
 	
 	// Class variables
-	private static Socket sockCliente;
+	private static Socket sockClient;
 	
 	private static PrintWriter out;
 	private static BufferedReader in;
 	
 	// Starts the client, which has the ability to send messages
-	public Cliente(String IP, int puerto) {
+	public Client(String IP, int puerto) {
 		try {
-			sockCliente = new Socket(IP, puerto);
-			out = new PrintWriter(sockCliente.getOutputStream(), true);
-			in = new BufferedReader(new InputStreamReader(sockCliente.getInputStream()));
+			sockClient = new Socket(IP, puerto);
+			out = new PrintWriter(sockClient.getOutputStream(), true);
+			in = new BufferedReader(new InputStreamReader(sockClient.getInputStream()));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Failed to connect to the other user \n Are you sure you are connected?", "ERROR", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
@@ -29,8 +29,8 @@ public class Cliente {
 	}
 	
 	// Method to send messages
-	public static void enviarMensaje(String msg, SentCallback call) {
-		System.out.println("enviado a "+sockCliente.getLocalAddress()+"\nmsg: "+msg);
+	public static void sendMessage(String msg, SentCallback call) {
+		System.out.println("enviado a "+sockClient.getLocalAddress()+"\nmsg: "+msg);
 		out.println(msg);
 		Thread get = new Thread(new Runnable() {
 			

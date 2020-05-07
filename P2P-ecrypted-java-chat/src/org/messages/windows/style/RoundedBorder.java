@@ -1,4 +1,4 @@
-package org.mensajes.ventanas.estilo;
+package org.messages.windows.style;
 
 import java.awt.Color;
 import java.awt.Component;

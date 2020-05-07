@@ -8,7 +8,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.swing.JOptionPane;
 //BE------------------------------------------
-public class Cifrado {
+public class Cipher {
 
 	// Set a default password
 	private static String KEY = "g�'90��p�p�8486-,-.,<2";
@@ -17,7 +17,7 @@ public class Cifrado {
 	private static byte[] key;
 	
 	// If the user wants to put another password, it is changed
-	public Cifrado(String key) {
+	public Cipher(String key) {
 		KEY = key;
 	}
 	
@@ -38,14 +38,14 @@ public class Cifrado {
 	}
 	
 	// Encrypts the message with the key.
-	public static String cifrarMSG(String msg) {
+	public static String codeMSG(String msg) {
 		String ret;
 		
 		try {
 			setKey();
-			Cipher cifrado = Cipher.getInstance("AES/ECB/PKCS5Padding");
-			cifrado.init(Cipher.ENCRYPT_MODE, secretKey);
-			return Base64.getEncoder().encodeToString(cifrado.doFinal(msg.getBytes()));
+			Cipher Cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+			Cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+			return Base64.getEncoder().encodeToString(Cipher.doFinal(msg.getBytes()));
 		} catch (Exception e) {
 			System.err.println("Encryption failed");
 		}
@@ -54,15 +54,15 @@ public class Cifrado {
 	}
 	
 	// Decrypt the message with the password
-	public static String descifrarMSG(String msg) {
+	public static String decodeMSG(String msg) {
 		
 		try {
 			setKey();
-			Cipher cifrado = Cipher.getInstance("AES/ECB/PKCS5Padding");
-			cifrado.init(Cipher.DECRYPT_MODE, secretKey);
-			return new String(cifrado.doFinal(Base64.getDecoder().decode(msg)));
+			Cipher Cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+			Cipher.init(Cipher.DECRYPT_MODE, secretKey);
+			return new String(Cipher.doFinal(Base64.getDecoder().decode(msg)));
 		} catch (Exception e) {
-			System.err.println("Decryption failed");
+			System.err.println("Decryption error");
 			JOptionPane.showMessageDialog(null, "Decryption key is not correct "," Error decrypting", JOptionPane.ERROR_MESSAGE);
 		}
 		
