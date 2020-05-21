@@ -17,6 +17,10 @@ public class Decoration {
 		field.setForeground(Color.white);
 		field.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 		field.setPreferredSize(new Dimension(0,32));
+		JTextField setBasicEstiloTXT2
+		JTextField setBasicEstiloTXT3
+		JTextField setBasicEstiloTXT4
+
 		
 		return field;
 	}
@@ -32,5 +36,5 @@ public class Decoration {
 		
 		return btn;
 	}
-	
+	use correct Paleta.Color_X from Paleta.java
 }
